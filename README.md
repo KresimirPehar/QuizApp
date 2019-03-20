@@ -34,15 +34,15 @@ Mobile sized screen:
 
 #### Requirements:
 
-Node
+- Node
 
-MongoDB
+- MongoDB
 #### How to install:
 
--Clone the repository and in the root directory hit "npm install" to install server dependencies.
+1. Clone the repository and in the root directory hit "npm install" to install server dependencies.
 
--Go into the "client" directory and again hit "npm install" to install client dependencies.
+2. Go into the "client" directory and again hit "npm install" to install client dependencies.
 
--Go back to the root directory and hit "npm run dev" to run the app.
+3. Go back to the root directory and hit "npm run dev" to run the app.
 
--Enjoy!
+**Enjoy!**
