@@ -11,7 +11,7 @@ const PORT = 5000;
 
 mongoose.connect(config.DB, { useNewUrlParser: true })
         .then(results => console.log('Connected to database'))
-        .catch(err => console.log(`Can't connect to database:`, err));
+        .catch(err => console.error(`Can't connect to database:`, err));
 
 app.use(cors());
 app.use(bodyParser.json());
