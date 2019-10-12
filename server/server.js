@@ -9,7 +9,7 @@ const config = require('./database/config');
 const app = express();
 const PORT = 5000;
 
-mongoose.connect(config.DB, { useNewUrlParser: true })
+mongoose.connect(config.DB, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(results => console.log('Connected to database'))
     .catch(err => console.log(`Can't connect to database:`, err));
 
