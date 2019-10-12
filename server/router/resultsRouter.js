@@ -7,9 +7,9 @@ resultsRouter.route('/saveResults')
         const [name, date, userSelections] = [req.body.userName, req.body.date, req.body.userSelections]
         if (Math.abs(req.body.fePoints - req.body.bePoints) < 3)
             result = 'Full stack developer'
-        else if(req.body.fePoints > req.body.bePoints)
+        else if (req.body.fePoints > req.body.bePoints)
             result = 'Frontend developer'
-        else    
+        else
             result = 'Backend developer'
 
         var results = new resultSchema({
@@ -19,11 +19,11 @@ resultsRouter.route('/saveResults')
             userSelections
         })
         results.save()
-                .then(results => console.log('Saved to the databse'))
-                .catch(err => console.log(`Can't save to the database:`, err))
+            .then(results => console.log('Saved to the databse'))
+            .catch(err => console.log(`Can't save to the database:`, err))
 
-        res.json({name, date, result, path: '/result'})
-})
+        res.json({ name, date, result, path: '/result' })
+    })
 
 resultsRouter.route('/getResults')
     .get((req, res) => {
@@ -31,6 +31,6 @@ resultsRouter.route('/getResults')
             if (err) res.send('error:', err);
             res.send(results);
         })
-})
+    })
 
 module.exports = resultsRouter;

@@ -1,5 +1,0 @@
-export const GET_QUESTIONS = 'GET_QUESTIONS';
-export const QUESTION_CHECK = 'QUESTION_CHECK';
-export const GET_RESULT = 'GET_RESULT';
-export const GET_RESULTSLIST = 'GET_RESULTSLIST';
-export const RESET_VALUES = 'RESET_VALUES';
