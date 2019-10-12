@@ -23,7 +23,7 @@ const initialState = {
             checked: false,
         }
     },
-    quizResult: { 
+    quizResult: {
         submited: false
     },
     resultsList: {
@@ -36,20 +36,20 @@ const onQuestionCheck = (state, action) => ({
     ...state,
     quizForm: {
         ...state.quizForm,
-            [action.questionName] : {
-                checked: true,
-                frontend: action.fValue, 
-                backend: action.bValue
+        [action.questionName]: {
+            checked: true,
+            frontend: action.fValue,
+            backend: action.bValue
         }
     },
     userSelections: {
         ...state.userSelections,
-            [action.question] : action.answer
+        [action.question]: action.answer
     }
 })
 
 const getResult = (state, action) => ({
-    ...state, 
+    ...state,
     quizResult: {
         userName: action.userName,
         date: action.date,
@@ -60,7 +60,7 @@ const getResult = (state, action) => ({
 })
 
 const getResultsList = (state, action) => ({
-    ...state, 
+    ...state,
     resultsList: {
         resultsLoaded: true,
         data: action.payload
@@ -81,7 +81,7 @@ const QuizReducer = (state = initialState, action) => {
         case types.RESET_VALUES:
             return initialState;
 
-        default: 
+        default:
             return state;
     }
 }

@@ -8,7 +8,7 @@ const Answers = (props) => {
 
     return (
         <div className='answers'>
-            <input type='radio' name={props.name} onClick={onClick}/><span>{props.label}</span>
+            <input type='radio' name={props.name} onClick={onClick} /><span>{props.label}</span>
         </div>
     );
 }

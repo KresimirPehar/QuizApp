@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const QuizResult = (props) => {
     return (
@@ -7,7 +7,7 @@ const QuizResult = (props) => {
             <div><span>Seems like You are:</span></div>
             <div className='result'>{props.results.result}</div>
             <div>
-                <Link to = '/'>
+                <Link to='/'>
                     <button className='homeBtn' onClick={props.resetValues}>Home</button>
                 </Link>
             </div>

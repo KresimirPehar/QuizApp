@@ -12,7 +12,7 @@ const questionsReducer = (state = initialState, action) => {
     switch (action.type) {
         case types.GET_QUESTIONS:
             return getQuestions(state, action);
-        default: 
+        default:
             return state;
     }
 }
