@@ -1,23 +1,11 @@
 {
-  "parser": "babel-eslint",
   "extends": [
     "airbnb",
-    "plugin:prettier/recommended"
+    "prettier",
+    "prettier/react"
   ],
-  "parserOptions": {
-    "ecmaVersion": 6,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
-  "env": {
-    "es6": true,
-    "jest": true,
-    "browser": true
-  },
   "plugins": [
-    "react"
+    "prettier"
   ],
   "rules": {
     "react/jsx-filename-extension": [
@@ -29,18 +17,28 @@
         ]
       }
     ],
-    "react/no-this-in-sfc": 0,
-    "react/jsx-one-expression-per-line": 0,
-    "react/prefer-stateless-function": 0,
-    "react/jsx-tag-spacing": 0,
-    "react/button-has-type": 0,
-    "react/no-unescaped-entities": 0,
     "react/prop-types": 0,
-    "jsx-a11y/click-events-have-key-events": 0,
-    "jsx-a11y/no-static-element-interactions": 0,
-    "indent": [
+    "no-var": 2,
+    "prefer-const": "error",
+    "no-underscore-dangle": 0,
+    "import/imports-first": [
       "error",
-      2
+      "absolute-first"
+    ],
+    "import/newline-after-import": "error",
+    "semi": [
+      2,
+      "always"
     ]
-  }
+  },
+  "globals": {
+    "window": true,
+    "document": true,
+    "localStorage": true,
+    "FormData": true,
+    "FileReader": true,
+    "Blob": true,
+    "navigator": true
+  },
+  "parser": "babel-eslint"
 }
