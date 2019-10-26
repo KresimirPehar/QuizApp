@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
-import Question from '../components/Question';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Question from '../components/Question';
 import { questionCheck, saveResult } from '../redux/actions/quizActions';
 import { getQuestions } from '../redux/actions/questionsActions';
+
 const moment = require('moment');
 
 class Quiz extends Component {
@@ -15,7 +16,7 @@ class Quiz extends Component {
     this.state = {
       disableBtn: true,
       userName: '',
-    }
+    };
   }
 
   componentDidMount() {
@@ -35,17 +36,17 @@ class Quiz extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    var [fePoints, bePoints] = [0, 0];
+    let [fePoints, bePoints] = [0, 0];
     Object.keys(this.props.quizForm).forEach(question => {
       fePoints += this.props.quizForm[question].frontend;
       bePoints += this.props.quizForm[question].backend;
-    })
+    });
     const date = moment().format('DD MMM YYYY');
     this.props.actions.saveResult(this.state.userName, date, fePoints, bePoints, this.props.userSelections);
   }
 
   validateQuizForm = () => {
-    var anyUnchecked = Object.keys(this.props.quizForm)
+    const anyUnchecked = Object.keys(this.props.quizForm)
       .some(question => this.props.quizForm[question].questionValue === "");
     if (anyUnchecked === false && this.state.userName.length > 0)
       this.setState({ disableBtn: false });
@@ -53,7 +54,7 @@ class Quiz extends Component {
 
 
   render() {
-    var view = (
+    let view = (
       <div id='quiz'>
         <Link to='/'>
           <FontAwesome className='backArrow' name='arrow-circle-left' />
@@ -66,10 +67,10 @@ class Quiz extends Component {
         </div>
         <button className='submitBtn' onClick={this.onSubmit} disabled={this.state.disableBtn}>Submit</button>
       </div>
-    )
+    );
 
     if (this.props.quizResult.submited === true)
-      view = <Redirect to={{ pathname: this.props.quizResult.path }} />
+      view = <Redirect to={{ pathname: this.props.quizResult.path }} />;
 
     return view;
   }
@@ -80,11 +81,11 @@ const mapStateToProps = state => ({
   quizForm: state.quiz.quizForm,
   quizResult: state.quiz.quizResult,
   userSelections: state.quiz.userSelections
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({ getQuestions, questionCheck, saveResult }, dispatch)
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Quiz);
 

@@ -13,6 +13,6 @@ const QuizResult = (props) => {
             </div>
         </div>
     );
-}
+};
 
 export default QuizResult;

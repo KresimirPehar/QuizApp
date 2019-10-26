@@ -1,5 +1,5 @@
-import * as types from './actionTypes';
 import axios from 'axios';
+import * as types from './actionTypes';
 
 export const questionCheck = (questionName, fValue, bValue, question, answer) => ({
     type: types.QUESTION_CHECK,
@@ -8,7 +8,7 @@ export const questionCheck = (questionName, fValue, bValue, question, answer) =>
     bValue,
     question,
     answer
-})
+});
 
 export const getResult = results => ({
     type: types.GET_RESULT,
@@ -16,16 +16,16 @@ export const getResult = results => ({
     date: results.date,
     result: results.result,
     path: results.path
-})
+});
 
 export const getResultsList = results => ({
     type: types.GET_RESULTSLIST,
     payload: results
-})
+});
 
 export const resetValues = () => ({
     type: types.RESET_VALUES
-})
+});
 
 export const saveResult = (userName, date, fePoints, bePoints, userSelections) => (
     dispatch =>
@@ -35,13 +35,13 @@ export const saveResult = (userName, date, fePoints, bePoints, userSelections) =
             )
             .catch(err =>
                 console.log(`Can't post to /saveResults:`, err))
-)
+);
 
 export const getResults = () => (
     dispatch =>
         axios.get('/results/getResults')
             .then(response => {
-                dispatch(getResultsList(response.data))
+                dispatch(getResultsList(response.data));
             })
             .catch(err => console.log(`Can't get scores:`, err))
-)
+);

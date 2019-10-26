@@ -30,7 +30,7 @@ const initialState = {
         resultsLoaded: false
     },
     userSelections: {}
-}
+};
 
 const onQuestionCheck = (state, action) => ({
     ...state,
@@ -46,7 +46,7 @@ const onQuestionCheck = (state, action) => ({
         ...state.userSelections,
         [action.question]: action.answer
     }
-})
+});
 
 const getResult = (state, action) => ({
     ...state,
@@ -57,7 +57,7 @@ const getResult = (state, action) => ({
         submited: true,
         path: action.path
     }
-})
+});
 
 const getResultsList = (state, action) => ({
     ...state,
@@ -65,7 +65,7 @@ const getResultsList = (state, action) => ({
         resultsLoaded: true,
         data: action.payload
     }
-})
+});
 
 const QuizReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -76,7 +76,7 @@ const QuizReducer = (state = initialState, action) => {
             return getResult(state, action);
 
         case types.GET_RESULTSLIST:
-            return getResultsList(state, action)
+            return getResultsList(state, action);
 
         case types.RESET_VALUES:
             return initialState;
@@ -84,6 +84,6 @@ const QuizReducer = (state = initialState, action) => {
         default:
             return state;
     }
-}
+};
 
 export default QuizReducer;

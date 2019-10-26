@@ -2,11 +2,11 @@ import * as types from '../actions/actionTypes';
 
 const initialState = {
     data: []
-}
+};
 
 const getQuestions = (state, action) => ({
     data: action.payload
-})
+});
 
 const questionsReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -15,6 +15,6 @@ const questionsReducer = (state = initialState, action) => {
         default:
             return state;
     }
-}
+};
 
 export default questionsReducer;

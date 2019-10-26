@@ -6,16 +6,16 @@ class ResultsList extends Component {
         this.state = {
             showAnswersOnClick: false,
             answers: []
-        }
+        };
     }
 
     onResultClick = async () => {
         await this.setState({ showAnswersOnClick: !this.state.showAnswersOnClick });
         if (this.state.showAnswersOnClick && this.state.answers.length === 0) {
-            var answers = this.props.userSelections;
-            var array = [];
+            let answers = this.props.userSelections;
+            let array = [];
             Object.keys(answers).forEach(function (key) {
-                array.push(key + ' ' + answers[key]);
+                array.push(`${key  } ${  answers[key]}`);
             });
             this.setState({ answers: array });
         }

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getResults } from '../redux/actions/quizActions';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router-dom';
+import { getResults } from '../redux/actions/quizActions';
 import ResultsList from './ResultsList';
 
 class Results extends Component {
@@ -37,11 +37,11 @@ class Results extends Component {
 
 const mapStateToProps = state => ({
     resultsList: state.quiz.resultsList
-})
+});
 
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators({ getResults }, dispatch)
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Results);
 
