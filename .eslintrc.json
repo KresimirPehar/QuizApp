@@ -5,7 +5,8 @@
     "prettier/react"
   ],
   "plugins": [
-    "prettier"
+    "prettier",
+    "react-hooks"
   ],
   "rules": {
     "react/jsx-filename-extension": [
@@ -29,7 +30,10 @@
     "semi": [
       2,
       "always"
-    ]
+    ],
+    "react/jsx-props-no-spreading": 0,
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   },
   "globals": {
     "window": true,
