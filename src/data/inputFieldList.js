@@ -2,7 +2,7 @@
 export default [
   {
     "question": "Are you good at drawing?",
-    "input_name": "drawing",
+    "inputName": "drawing",
     "answers": [
       {
         "label": "I won some competitions",
@@ -32,7 +32,7 @@ export default [
   },
   {
     "question": "How much empathy do you have for others?",
-    "input_name": "empathy",
+    "inputName": "empathy",
     "answers": [
       {
         "label": "My life depends on someones opinion about my stuff",
@@ -56,7 +56,7 @@ export default [
   },
   {
     "question": "Look or quality?",
-    "input_name": "look_quality",
+    "inputName": "look_quality",
     "answers": [
       {
         "label": "Good look opens all dors",
@@ -80,7 +80,7 @@ export default [
   },
   {
     "question": "How good are you in matching clothes?",
-    "input_name": "clothes",
+    "inputName": "clothes",
     "answers": [
       {
         "label": "I like to make experiments with colors",
@@ -104,7 +104,7 @@ export default [
   },
   {
     "question": "How good can you assume someone's intentions?",
-    "input_name": "assume_intentions",
+    "inputName": "assume_intentions",
     "answers": [
       {
         "label": "I could be a great detective",
