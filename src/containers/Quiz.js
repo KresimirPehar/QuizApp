@@ -9,7 +9,7 @@ import { getQuestions } from '../redux/actions/questionsActions';
 const moment = require('moment');
 
 const Quiz = ({ getQuestions, questionCheck, saveResult, data, quizForm, quizResult, userSelections }) => {
-  const [buttonDisabledState, setButtonDisableState] = useState(true);
+  const [buttonDisabledState, setButtonDisabledState] = useState(true);
   const [userName, setUserName] = useState('');
 
   useEffect(() => {
@@ -21,8 +21,8 @@ const Quiz = ({ getQuestions, questionCheck, saveResult, data, quizForm, quizRes
     const anyUnchecked = Object.keys(quizForm)
       .some(question => quizForm[question].questionValue === "");
     if (anyUnchecked === false && userName.length > 0)
-      setButtonDisableState(false);
-    else setButtonDisableState(true);
+      setButtonDisabledState(false);
+    else setButtonDisabledState(true);
   }, [quizForm, userName.length]);
 
   const onInputChange = async (e) => setUserName(e.target.value);
