@@ -10,8 +10,8 @@ const Home = () => {
             <h1>Quiz App</h1>
             <h4>Are you Frontend or Backend developer?</h4>
             <div className='btns'>
-                <Link to='/quiz'><button className='startBtn'>Start</button></Link>
-                <Link to='/results'><button className='resultsBtn'>Results</button></Link>
+                <Link to='/quiz'><button type='button' className='startBtn'>Start</button></Link>
+                <Link to='/results'><button type='button' className='resultsBtn'>Results</button></Link>
             </div>
         </div>
     );

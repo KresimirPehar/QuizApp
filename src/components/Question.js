@@ -1,15 +1,15 @@
 import React from 'react';
 import Answers from './Answers';
 
-const Question = (props) => {
+const Question = ({ id, question, answers, inputName, onClick }) => {
     return (
         <div className='questionForm'>
             <div className='ID_name'>
-                <span className='ID'>{props.id + 1}</span>
-                <div className='name'>{props.question}</div>
+                <span className='ID'>{id + 1}</span>
+                <div className='name'>{question}</div>
             </div>
-            {props.answers.map((answers, key) =>
-                <Answers key={key} question={props.question} name={props.input_name} onClick={props.onClick} {...answers} />
+            {answers.map((answer, key) =>
+                <Answers key={key.toString()} question={question} name={inputName} onClick={onClick} {...answer} />
             )}
         </div>
     );

@@ -1,80 +1,68 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import Question from '../components/Question';
 import { questionCheck, saveResult } from '../redux/actions/quizActions';
 import { getQuestions } from '../redux/actions/questionsActions';
 
 const moment = require('moment');
 
-class Quiz extends Component {
+const Quiz = ({ getQuestions, questionCheck, saveResult, data, quizForm, quizResult, userSelections }) => {
+  const [buttonDisabledState, setButtonDisableState] = useState(true);
+  const [userName, setUserName] = useState('');
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      disableBtn: true,
-      userName: '',
-    };
-  }
+  useEffect(() => {
+    getQuestions();
+  }, [getQuestions]);
 
-  componentDidMount() {
-    this.props.actions.getQuestions();
-  }
+  // validate form
+  useEffect(() => {
+    const anyUnchecked = Object.keys(quizForm)
+      .some(question => quizForm[question].questionValue === "");
+    if (anyUnchecked === false && userName.length > 0)
+      setButtonDisableState(false);
+    else setButtonDisableState(true);
+  }, [quizForm, userName.length]);
 
-  onInputChange = async (e) => {
-    await this.setState({ userName: e.target.value });
-    this.validateQuizForm();
-  }
+  const onInputChange = async (e) => setUserName(e.target.value);
 
-  onChooseAnswer = async (e, frontendValue, backendValue, question, answer) => {
+  const onChooseAnswer = async (e, frontendValue, backendValue, question, answer) => {
     e.persist();
-    await this.props.actions.questionCheck(e.target.name, frontendValue, backendValue, question, answer);
-    this.validateQuizForm();
-  }
+    await questionCheck(e.target.name, frontendValue, backendValue, question, answer);
+  };
 
-  onSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     let [fePoints, bePoints] = [0, 0];
-    Object.keys(this.props.quizForm).forEach(question => {
-      fePoints += this.props.quizForm[question].frontend;
-      bePoints += this.props.quizForm[question].backend;
+    Object.keys(quizForm).forEach(question => {
+      fePoints += quizForm[question].frontend;
+      bePoints += quizForm[question].backend;
     });
     const date = moment().format('DD MMM YYYY');
-    this.props.actions.saveResult(this.state.userName, date, fePoints, bePoints, this.props.userSelections);
-  }
+    saveResult(userName, date, fePoints, bePoints, userSelections);
+  };
 
-  validateQuizForm = () => {
-    const anyUnchecked = Object.keys(this.props.quizForm)
-      .some(question => this.props.quizForm[question].questionValue === "");
-    if (anyUnchecked === false && this.state.userName.length > 0)
-      this.setState({ disableBtn: false });
-  }
-
-
-  render() {
-    let view = (
-      <div id='quiz'>
-        <Link to='/'>
-          <FontAwesome className='backArrow' name='arrow-circle-left' />
-        </Link>
-        <input className='userNameInput' placeholder='Enter your name . . .' value={this.state.userName} onChange={this.onInputChange} />
-        <div className='questions'>
-          {this.props.data.map((question, key) =>
-            <Question key={key} id={key} {...question} onClick={this.onChooseAnswer} />
-          )}
-        </div>
-        <button className='submitBtn' onClick={this.onSubmit} disabled={this.state.disableBtn}>Submit</button>
+  let view = (
+    <div id='quiz'>
+      <Link to='/'>
+        <FontAwesome className='backArrow' name='arrow-circle-left' />
+      </Link>
+      <input className='userNameInput' placeholder='Enter your name . . .' value={userName} onChange={onInputChange} />
+      <div className='questions'>
+        {data.map((question, key) =>
+          <Question key={key.toString()} id={key} {...question} onClick={onChooseAnswer} />
+        )}
       </div>
-    );
+      <button className='submitBtn' type='submit' onClick={onSubmit} disabled={buttonDisabledState}>Submit</button>
+    </div>
+  );
 
-    if (this.props.quizResult.submited === true)
-      view = <Redirect to={{ pathname: this.props.quizResult.path }} />;
+  if (quizResult.submited === true)
+    view = <Redirect to={{ pathname: quizResult.path }} />;
 
-    return view;
-  }
-}
+  return view;
+};
 
 const mapStateToProps = state => ({
   data: state.data.data,
@@ -83,9 +71,5 @@ const mapStateToProps = state => ({
   userSelections: state.quiz.userSelections
 });
 
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ getQuestions, questionCheck, saveResult }, dispatch)
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Quiz);
+export default connect(mapStateToProps, { getQuestions, questionCheck, saveResult })(Quiz);
 

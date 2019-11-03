@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { resetValues } from '../redux/actions/quizActions';
 import Home from '../components/Home';
@@ -8,7 +7,7 @@ import Results from './Results';
 import Quiz from './Quiz';
 import QuizResult from '../components/QuizResult';
 
-const App = () => {
+const App = ({ quizResults, resetValues }) => {
     return (
         <Switch>
             <Route exact path="/" component={Home} />
@@ -18,8 +17,8 @@ const App = () => {
                 path="/result"
                 render={() => (
                     <QuizResult
-                        resetValues={this.props.actions.resetValues}
-                        results={this.props.quizResults}
+                        resetValues={resetValues}
+                        results={quizResults}
                     />
                 )}
             />
@@ -27,17 +26,9 @@ const App = () => {
     );
 };
 
-const mapStateToProps = state => ({
-    quizResults: state.quiz.quizResult
-});
-
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators({ resetValues }, dispatch)
-});
-
 export default withRouter(
     connect(
-        mapStateToProps,
-        mapDispatchToProps
+        state => ({ quizResults: state.quiz.quizResult }),
+        { resetValues }
     )(App)
 );
