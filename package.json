@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "concurrently --kill-others-on-fail \"npm run sass-watch\" \"npm run client\" \"npm run server\"",
+    "start": "concurrently --kill-others-on-fail \"npm run client\" \"npm run server\"",
     "client": "react-scripts start",
     "server": "cd server && nodemon server.js",
     "sass-watch": "cd src/styles && sass --watch scss/style.scss:css/style.css"
