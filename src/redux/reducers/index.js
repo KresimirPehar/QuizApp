@@ -3,8 +3,8 @@ import quiz from './quizReducer';
 import data from './questionsReducer';
 
 const rootReducer = combineReducers({
-    quiz,
-    data
+  quiz,
+  data
 });
 
 export default rootReducer;
